@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Raihan Alfarizi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #3B82F6; /* Biru */
+            --secondary: #1E40AF; /* Biru Tua */
+            --dark: #1F2937; /* Abu-abu Gelap */
+            --light: #F3F4F6; /* Abu-abu Sangat Terang */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: calc(100vh - 80px);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
+        }
+        
+        .hero-title span {
+            position: relative;
+            display: inline-block;
+            color: var(--primary);
+        }
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary);
+            transform-origin: left;
+            animation: underline 2s infinite;
+        }
+        
+        @keyframes underline {
+            0%, 100% {
+                transform: scaleX(0);
+            }
+            50% {
+                transform: scaleX(1);
+            }
+        }
+        
+        /* About Section */
+        .skill-bar {
+            height: 8px;
+            background-color: #E5E7EB;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        
+        /* Portfolio Section */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-origin: center;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .project-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        .contact-input {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid #E5E7EB;
+        }
+        
+        .contact-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Cursor Animation */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2rem;
+            background-color: var(--primary);
+            animation: blink 0.7s infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar fixed w-full z-50 py-4 px-6 md:px-12">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <a href="#" class="text-2xl font-bold text-blue-600">rhannalfa</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#about" class="nav-link font-medium text-gray-700 hover:text-blue-600">About</a>
+                <a href="#portfolio" class="nav-link font-medium text-gray-700 hover:text-blue-600">Portfolio</a>
+                <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-blue-600">Contact</a>
+            </nav>
+            <button class="md:hidden text-2xl text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section id="home" class="hero flex items-center justify-center px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <p class="text-blue-600 font-medium mb-3">Hello, I'm</p>
+                <h1 class="hero-title text-4xl md:text-6xl font-bold mb-5">
+                    <span>Raihan Alfarizi</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">
+                    <span class="typing-text">Junior Web Developer</span>
+                    <span class="cursor"></span>
+                </h2>
+                <p class="text-gray-600 mb-8 max-w-lg">
+                    Saya seorang mahasiswa semester 4 di jurusan Teknik Informatika. Saya bersemangat dalam menciptakan pengalaman digital yang fungsional, dapat diakses, dan menarik secara visual.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
+                        Hubungi Saya
+                    </a>
+                    <a href="#portfolio" class="px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition duration-300">
+                        Lihat Proyek
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden md:block">
+                <div class="w-full h-96 bg-blue-500 rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1510519138101-570d1dca3d66?auto=format&fit=crop&q=80&w=1931&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raihan Alfarizi" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-lg shadow-xl"></div>
+                <div class="absolute -top-6 -right-6 w-28 h-28 bg-green-400 rounded-full shadow-xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang <span class="text-blue-600">Saya</span></h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Siapa Saya</h3>
+                    <p class="text-gray-600 mb-6">
+                        Saya adalah seorang mahasiswa semester 4 di jurusan Teknik Informatika. Saya mulai menyentuh bidang pengembangan web sejak kelas 3 SMK. Ketertarikan saya pada IT mendorong saya untuk sering mengikuti berbagai bootcamp di bidang ini.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Selama perjalanan akademik dan praktis, saya beberapa kali dipercaya menjadi ketua kelompok di kelas, mengasah kemampuan kepemimpinan dan kolaborasi. Saya berharap portofolio ini dapat menjadi bukti dedikasi dan perjalanan saya di dunia teknologi, serta berguna untuk peluang di masa depan.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-graduation-cap mr-2 text-blue-600"></i>
+                            <span>Mahasiswa Teknik Informatika</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-code mr-2 text-blue-600"></i>
+                            <span>Junior Web Developer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Keahlian Saya</h3>
+                    
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>HTML</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>Tailwind CSS</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>Bootstrap</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>PHP</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>Node.js</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>Java</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-2">
+                            <span>Figma</span>
+                            <span>78%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 px-6 md:px-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Proyek <span class="text-blue-600">Pilihan</span></h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+                    Berikut adalah beberapa proyek terbaru saya yang menampilkan keahlian dan pengalaman saya sebagai web developer.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/7a/10/f1/7a10f1fc4752c3ae38c80ac096b1b4d9.jpg" alt="Bandung Vibes" class="project-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Bandung Vibes</h3>
+                        <p class="text-gray-600 mb-4">Proyek ini menampilkan keindahan Bandung dan informasi terkait. Saya menjadi bagian tim **backend** dalam pengembangannya menggunakan **Laravel** dan **Tailwind CSS**.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Laravel</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Backend</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Web Development</span>
+                        </div>
+                        <a href="https://github.com/rhannalfa/bandung-vibes.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Core Path" class="project-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3>Core Path</h3>
+                        <p class="text-gray-600 mb-4">Proyek pengembangan aplikasi pembelajaran online ini dibuat menggunakan **JavaScript** dan **Tailwind CSS**. Saya berkontribusi aktif di bagian **backend**.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Backend</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Web Development</span>
+                        </div>
+                        <a href="https://github.com/FakhriHH/core-path.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/17/4a/f9/174af9be02132d41578f3a21ba7e4ecb.jpg" alt="Music Player" class="project-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3>Music Player</h3>
+                        <p class="text-gray-600 mb-4">Aplikasi pemutar musik sederhana yang dibuat sepenuhnya dengan **HTML** dan **CSS**. Proyek ini menunjukkan pemahaman saya tentang frontend dasar.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Frontend</span>
+                        </div>
+                        <a href="https://github.com/rhannalfa/music-player.github.io.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sistem Informasi Beasiswa" class="project-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3>Sistem Informasi Beasiswa</h3>
+                        <p class="text-gray-600 mb-4">Pengembangan sistem untuk mengelola data beasiswa, memudahkan proses pendaftaran dan seleksi.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Database</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Fullstack</span>
+                        </div>
+                        <a href="https://github.com/rhannalfa/beasiswa.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-6 md:px-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hubungi <span class="text-blue-600">Saya</span></h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+                    Punya proyek dalam pikiran atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya!
+                </p>
+            </div>
+            
+            <form action="mailto:rhannalfa@gmail.com" method="GET" enctype="text/plain" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" name="name" placeholder="Nama Anda" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    <input type="email" name="email" placeholder="Email Anda" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <input type="text" name="subject" placeholder="Subjek" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <textarea name="body" rows="5" placeholder="Pesan Anda" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                <button type="submit" class="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
+                    Kirim Pesan
+                </button>
+            </form>
+            
+            <div class="flex justify-center space-x-6 mt-12 text-gray-700">
+                <a href="mailto:rhannalfa@gmail.com" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/rhannalf/" target="_blank" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/rhannalfa" target="_blank" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="X (Twitter)">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://github.com/rhannalfa" target="_blank" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-6 bg-gray-800 text-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <p>&copy; 2025 Raihan Alfarizi. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://github.com/rhannalfa" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/rhannalf/" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/rhannalfa" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for typing effect and potentially other animations
+        const typingTextElement = document.querySelector('.typing-text');
+        const phrases = ["Junior Web Developer", "Mahasiswa Teknik Informatika"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            const currentText = isDeleting ? currentPhrase.substring(0, charIndex--) : currentPhrase.substring(0, charIndex++);
+            typingTextElement.textContent = currentText;
+
+            let typeSpeed = 100;
+            if (isDeleting) {
+                typeSpeed /= 2; // Delete faster
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length + 1) {
+                typeSpeed = 1500; // Pause at end of phrase
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500; // Pause before typing new phrase
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>
