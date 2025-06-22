@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Raihan Alfarizi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* Variabel CSS untuk kemudahan */
         :root {
-            --primary: #3B82F6; /* Biru */
-            --secondary: #1E40AF; /* Biru Tua */
-            --dark: #1F2937; /* Abu-abu Gelap */
-            --light: #F3F4F6; /* Abu-abu Sangat Terang */
+            --primary-color: #3B82F6; /* Biru */
+            --secondary-color: #1E40AF; /* Biru Tua */
+            --dark-text: #1F2937; /* Abu-abu Gelap */
+            --light-bg: #F3F4F6; /* Abu-abu Sangat Terang */
+            --white-bg: #FFFFFF; /* Putih */
+            --gray-border: #E5E7EB; /* Border abu-abu */
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+            --shadow-deep: rgba(0, 0, 0, 0.04);
+            --yellow-accent: #FACC15; /* Kuning */
+            --green-accent: #22C55E; /* Hijau */
         }
-        
+
+        /* Reset Dasar */
         * {
             margin: 0;
             padding: 0;
@@ -22,218 +31,606 @@
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        /* Navigation */
+        /* --- Navigation (Navbar) --- */
         .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            padding: 1rem 1.5rem; /* py-4 px-6 */
             background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px var(--shadow-light);
         }
         
-        .nav-link {
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 2rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            color: var(--primary-color); /* text-blue-600 */
+            text-decoration: none;
+        }
+        
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem; /* space-x-8 */
+        }
+        
+        .navbar .nav-link {
             position: relative;
+            font-weight: 500; /* font-medium */
+            color: #4B5563; /* text-gray-700 */
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
         
-        .nav-link::after {
+        .navbar .nav-link:hover {
+            color: var(--primary-color); /* hover:text-blue-600 */
+        }
+        
+        .navbar .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: var(--primary);
+            background-color: var(--primary-color);
             transition: width 0.3s ease;
         }
         
-        .nav-link:hover::after {
+        .navbar .nav-link:hover::after {
             width: 100%;
         }
+
+        .navbar .menu-button {
+            display: none; /* hidden md:flex */
+            font-size: 1.5rem; /* text-2xl */
+            color: #4B5563; /* text-gray-700 */
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
         
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
-            height: calc(100vh - 80px);
+            height: calc(100vh - 80px); /* calc(100vh - 80px) */
+            display: flex;
+            align-items: center; /* items-center */
+            justify-content: center; /* justify-center */
+            padding: 5rem 1.5rem; /* px-6 md:px-12 */
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
         }
         
+        .hero-content {
+            max-width: 1100px; /* max-w-6xl mx-auto */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column */
+            gap: 3rem; /* gap-12 */
+            align-items: center;
+        }
+
+        .hero-text p {
+            color: var(--primary-color); /* text-blue-600 */
+            font-weight: 500; /* font-medium */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1.25rem; /* mb-5 */
+        }
+
         .hero-title span {
             position: relative;
             display: inline-block;
-            color: var(--primary);
+            color: var(--primary-color);
         }
         
-        .hero-title span::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
+        .hero-text h2 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        
+        .hero-text .description {
+            color: #4B5563; /* text-gray-600 */
+            margin-bottom: 2rem; /* mb-8 */
+            max-width: 32rem; /* max-w-lg */
+        }
+        
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem; /* gap-4 */
+        }
+
+        .hero-actions .btn {
+            padding: 0.75rem 1.5rem; /* px-6 py-3 */
+            font-weight: 500; /* font-medium */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: all 0.3s ease; /* transition duration-300 */
+            text-decoration: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        }
+        
+        .hero-actions .btn-primary {
+            background-color: var(--primary-color); /* bg-blue-600 */
+            color: var(--white-bg); /* text-white */
+        }
+        
+        .hero-actions .btn-primary:hover {
+            background-color: #2563EB; /* hover:bg-blue-700 */
+        }
+        
+        .hero-actions .btn-secondary {
+            border: 1px solid var(--primary-color); /* border border-blue-600 */
+            color: var(--primary-color); /* text-blue-600 */
+            background-color: transparent;
+            box-shadow: none; /* remove shadow for secondary */
+        }
+        
+        .hero-actions .btn-secondary:hover {
+            background-color: #EFF6FF; /* hover:bg-blue-50 */
+        }
+        
+        .hero-image-container {
+            position: relative;
+            display: none; /* hidden md:block */
+        }
+
+        .hero-image-wrapper {
+            width: 100%; /* w-full */
+            height: 300px; /* h-96, approx */
+            background-color: var(--primary-color); /* bg-blue-500 */
+            border-radius: 1rem; /* rounded-2xl */
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+        }
+        
+        .hero-image-wrapper img {
             width: 100%;
-            height: 5px;
-            background-color: var(--primary);
-            transform-origin: left;
-            animation: underline 2s infinite;
+            height: 100%;
+            object-fit: cover; /* object-cover */
         }
         
-        @keyframes underline {
-            0%, 100% {
-                transform: scaleX(0);
-            }
-            50% {
-                transform: scaleX(1);
-            }
+        .hero-image-container .deco-square {
+            position: absolute;
+            width: 8rem; /* w-32 */
+            height: 8rem; /* h-32 */
+            background-color: var(--yellow-accent); /* bg-yellow-400 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            bottom: -1.5rem; /* -bottom-6 */
+            left: -1.5rem; /* -left-6 */
         }
         
-        /* About Section */
+        .hero-image-container .deco-circle {
+            position: absolute;
+            width: 7rem; /* w-28 */
+            height: 7rem; /* h-28 */
+            background-color: var(--green-accent); /* bg-green-400 */
+            border-radius: 50%; /* rounded-full */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            top: -1.5rem; /* -top-6 */
+            right: -1.5rem; /* -right-6 */
+        }
+
+        /* --- Sections (General) --- */
+        section {
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+            padding-left: 1.5rem; /* px-6 */
+            padding-right: 1.5rem; /* px-6 */
+        }
+
+        section.bg-white {
+            background-color: var(--white-bg);
+        }
+
+        section.bg-gray-50 {
+            background-color: #F9FAFB; /* bg-gray-50 */
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem; /* mb-16 */
+        }
+        
+        .section-header h2 {
+            font-size: 2.25rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-color); /* text-blue-600 */
+        }
+        
+        .section-header .divider {
+            width: 5rem; /* w-20 */
+            height: 0.25rem; /* h-1 */
+            background-color: var(--primary-color); /* bg-blue-600 */
+            margin: 0 auto; /* mx-auto */
+        }
+        
+        .section-header .subtitle {
+            color: #4B5563; /* text-gray-600 */
+            margin-top: 1.5rem; /* mt-6 */
+            max-width: 42rem; /* max-w-2xl */
+            margin-left: auto; /* mx-auto */
+            margin-right: auto; /* mx-auto */
+        }
+        
+        /* --- About Section --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr; /* Default single column */
+            gap: 3rem; /* gap-12 */
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1rem; /* mb-4/mb-6 */
+        }
+
+        .about-content p {
+            color: #4B5563; /* text-gray-600 */
+            margin-bottom: 1.5rem; /* mb-6/mb-8 */
+            text-align: justify;
+        }
+        
+        .about-info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem; /* gap-4 */
+        }
+        
+        .about-info-item {
+            display: flex;
+            align-items: center;
+            color: #374151; /* text-gray-700 */
+        }
+        
+        .about-info-item i {
+            margin-right: 0.5rem; /* mr-2 */
+            color: var(--primary-color); /* text-blue-600 */
+        }
+        
+        .skill-bar-container {
+            margin-bottom: 1.25rem; /* mb-5 */
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        
         .skill-bar {
             height: 8px;
-            background-color: #E5E7EB;
+            background-color: #E5E7EB; /* bg-gray-200 */
             border-radius: 4px;
             overflow: hidden;
         }
         
         .skill-progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             border-radius: 4px;
             transition: width 1s ease;
         }
         
-        /* Portfolio Section */
+        /* --- Portfolio Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default single column */
+            gap: 2rem; /* gap-8 */
+        }
+        
         .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform-origin: center;
+            background-color: var(--white-bg); /* bg-white */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
             overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .project-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px var(--shadow-medium), 0 10px 10px -5px var(--shadow-deep);
         }
         
-        .project-img {
+        .project-image-wrapper {
+            height: 12rem; /* h-48 */
+            overflow: hidden;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
         
-        .project-card:hover .project-img {
+        .project-card:hover .project-image {
             transform: scale(1.1);
         }
         
-        /* Contact Section */
+        .project-content {
+            padding: 1.5rem; /* p-6 */
+        }
+        
+        .project-content h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        
+        .project-content p {
+            color: #4B5563; /* text-gray-600 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem; /* gap-2 */
+        }
+        
+        .project-tag {
+            padding: 0.25rem 0.75rem; /* px-3 py-1 */
+            background-color: #DBEAFE; /* bg-blue-100 */
+            color: var(--primary-color); /* text-blue-600 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem; /* mt-4 */
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            background-color: var(--primary-color); /* bg-blue-600 */
+            color: var(--white-bg); /* text-white */
+            border-radius: 0.375rem; /* rounded-md */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background-color: #2563EB; /* hover:bg-blue-700 */
+        }
+        
+        /* --- Contact Section --- */
+        .contact-form-container {
+            max-width: 42rem; /* max-w-2xl */
+            margin: 0 auto;
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default single column */
+            gap: 1.5rem; /* gap-6 */
+        }
+
         .contact-input {
+            width: 100%; /* w-full */
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            border: 1px solid #D1D5DB; /* border border-gray-300 */
             transition: all 0.3s ease;
-            border-bottom: 2px solid #E5E7EB;
         }
         
         .contact-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.3);
+            outline: none;
+            border-color: var(--primary-color); /* focus:border-blue-600 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* focus:ring-2 focus:ring-blue-600 */
         }
         
-        /* Cursor Animation */
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1.2rem;
-            background-color: var(--primary);
-            animation: blink 0.7s infinite;
-            margin-left: 2px;
+        .contact-input[type="submit"] {
+            cursor: pointer;
+            background-color: var(--primary-color); /* bg-blue-600 */
+            color: var(--white-bg); /* text-white */
+            font-weight: 500; /* font-medium */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: background-color 0.3s ease;
         }
         
-        @keyframes blink {
-            0%, 100% {
-                opacity: 0;
+        .contact-input[type="submit"]:hover {
+            background-color: #2563EB; /* hover:bg-blue-700 */
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* space-x-6 */
+            margin-top: 3rem; /* mt-12 */
+            color: #4B5563; /* text-gray-700 */
+        }
+
+        .social-link {
+            font-size: 1.5rem; /* text-2xl */
+            color: #4B5563;
+            transition: color 0.3s ease;
+            text-decoration: none; /* remove underline from links */
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* --- Footer --- */
+        footer {
+            padding: 1.5rem 0; /* py-6 */
+            background-color: #1F2937; /* bg-gray-800 */
+            color: var(--white-bg); /* text-white */
+        }
+        
+        footer .container {
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 1rem; /* mt-4 */
+        }
+        
+        footer .social-footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* space-x-4 */
+        }
+        
+        footer .social-footer-links a {
+            color: #9CA3AF; /* text-gray-400 */
+            font-size: 1.125rem; /* default font-size for icons */
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        footer .social-footer-links a:hover {
+            color: var(--white-bg); /* hover:text-white */
+        }
+        
+        /* --- Responsive Design (Media Queries) --- */
+        @media (min-width: 768px) { /* md: */
+            .navbar .nav-links {
+                display: flex; /* md:flex */
             }
-            50% {
-                opacity: 1;
+            .navbar .menu-button {
+                display: none; /* md:hidden */
+            }
+            .hero-content {
+                grid-template-columns: 1fr 1fr; /* md:grid-cols-2 */
+            }
+            .hero-image-container {
+                display: block; /* md:block */
+            }
+            .about-content {
+                grid-template-columns: 1fr 1fr; /* md:grid-cols-2 */
+            }
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+            }
+            .contact-form-grid {
+                grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg: */
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
             }
         }
     </style>
 </head>
 <body>
-    <header class="navbar fixed w-full z-50 py-4 px-6 md:px-12">
-        <div class="flex justify-between items-center max-w-6xl mx-auto">
-            <a href="#" class="text-2xl font-bold text-blue-600">rhannalfa</a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link font-medium text-gray-700 hover:text-blue-600">Home</a>
-                <a href="#about" class="nav-link font-medium text-gray-700 hover:text-blue-600">About</a>
-                <a href="#portfolio" class="nav-link font-medium text-gray-700 hover:text-blue-600">Portfolio</a>
-                <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-blue-600">Contact</a>
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">rhannalfa</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
             </nav>
-            <button class="md:hidden text-2xl text-gray-700">
+            <button class="menu-button">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <section id="home" class="hero flex items-center justify-center px-6 md:px-12">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <p class="text-blue-600 font-medium mb-3">Hello, I'm</p>
-                <h1 class="hero-title text-4xl md:text-6xl font-bold mb-5">
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p>Hello, I'm</p>
+                <h1 class="hero-title">
                     <span>Raihan Alfarizi</span>
                 </h1>
-                <h2 class="text-2xl md:text-3xl font-semibold mb-6">
+                <h2 class="typing-text-container">
                     <span class="typing-text">Junior Web Developer</span>
                     <span class="cursor"></span>
                 </h2>
-                <p class="text-gray-600 mb-8 max-w-lg">
+                <p class="description">
                     Saya seorang mahasiswa semester 4 di jurusan Teknik Informatika. Saya bersemangat dalam menciptakan pengalaman digital yang fungsional, dapat diakses, dan menarik secara visual.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#contact" class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
                         Hubungi Saya
                     </a>
-                    <a href="#portfolio" class="px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition duration-300">
+                    <a href="#portfolio" class="btn btn-secondary">
                         Lihat Proyek
                     </a>
                 </div>
             </div>
-            <div class="relative hidden md:block">
-                <div class="w-full h-96 bg-blue-500 rounded-2xl overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1510519138101-570d1dca3d66?auto=format&fit=crop&q=80&w=1931&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raihan Alfarizi" class="w-full h-full object-cover">
+            <div class="hero-image-container">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1510519138101-570d1dca3d66?auto=format&fit=crop&q=80&w=1931&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raihan Alfarizi">
                 </div>
-                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-lg shadow-xl"></div>
-                <div class="absolute -top-6 -right-6 w-28 h-28 bg-green-400 rounded-full shadow-xl"></div>
+                <div class="deco-square"></div>
+                <div class="deco-circle"></div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 px-6 md:px-12 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang <span class="text-blue-600">Saya</span></h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    <section id="about" class="bg-white">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tentang <span>Saya</span></h2>
+                <div class="divider"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="about-content">
                 <div>
-                    <h3 class="text-2xl font-semibold mb-4">Siapa Saya</h3>
-                    <p class="text-gray-600 mb-6">
-                        Saya adalah seorang mahasiswa semester 4 di jurusan Teknik Informatika. Saya mulai menyentuh bidang pengembangan web sejak kelas 3 SMK. Ketertarikan saya pada IT mendorong saya untuk sering mengikuti berbagai bootcamp di bidang ini.
+                    <h3>Siapa Saya</h3>
+                    <p>
+                        Saya adalah seorang mahasiswa semester 4 di jurusan Teknik Informatika yang bersemangat dalam dunia pengembangan web. Saya mulai menyentuh bidang ini sejak kelas 3 SMK. Ketertarikan saya pada IT mendorong saya untuk sering mengikuti berbagai bootcamp di bidang ini.
                     </p>
-                    <p class="text-gray-600 mb-8">
+                    <p>
                         Selama perjalanan akademik dan praktis, saya beberapa kali dipercaya menjadi ketua kelompok di kelas, mengasah kemampuan kepemimpinan dan kolaborasi. Saya berharap portofolio ini dapat menjadi bukti dedikasi dan perjalanan saya di dunia teknologi, serta berguna untuk peluang di masa depan.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center text-gray-700">
-                            <i class="fas fa-graduation-cap mr-2 text-blue-600"></i>
+                    <div class="about-info-grid">
+                        <div class="about-info-item">
+                            <i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa Teknik Informatika</span>
                         </div>
-                        <div class="flex items-center text-gray-700">
-                            <i class="fas fa-code mr-2 text-blue-600"></i>
+                        <div class="about-info-item">
+                            <i class="fas fa-code"></i>
                             <span>Junior Web Developer</span>
                         </div>
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-2xl font-semibold mb-6">Keahlian Saya</h3>
+                    <h3>Keahlian Saya</h3>
                     
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>HTML</span>
                             <span>95%</span>
                         </div>
@@ -242,8 +639,8 @@
                         </div>
                     </div>
                     
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>Tailwind CSS</span>
                             <span>90%</span>
                         </div>
@@ -252,8 +649,8 @@
                         </div>
                     </div>
 
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>Bootstrap</span>
                             <span>88%</span>
                         </div>
@@ -262,8 +659,8 @@
                         </div>
                     </div>
                     
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>PHP</span>
                             <span>80%</span>
                         </div>
@@ -272,8 +669,8 @@
                         </div>
                     </div>
 
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>JavaScript</span>
                             <span>85%</span>
                         </div>
@@ -282,8 +679,8 @@
                         </div>
                     </div>
 
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>Node.js</span>
                             <span>75%</span>
                         </div>
@@ -292,8 +689,8 @@
                         </div>
                     </div>
 
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>Java</span>
                             <span>70%</span>
                         </div>
@@ -302,8 +699,8 @@
                         </div>
                     </div>
 
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-2">
+                    <div class="skill-bar-container">
+                        <div class="skill-header">
                             <span>Figma</span>
                             <span>78%</span>
                         </div>
@@ -316,132 +713,132 @@
         </div>
     </section>
 
-    <section id="portfolio" class="py-20 px-6 md:px-12 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Proyek <span class="text-blue-600">Pilihan</span></h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+    <section id="portfolio" class="bg-gray-50">
+        <div class="container">
+            <div class="section-header">
+                <h2>Proyek <span>Pilihan</span></h2>
+                <div class="divider"></div>
+                <p class="subtitle">
                     Berikut adalah beberapa proyek terbaru saya yang menampilkan keahlian dan pengalaman saya sebagai web developer.
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/7a/10/f1/7a10f1fc4752c3ae38c80ac096b1b4d9.jpg" alt="Bandung Vibes" class="project-img w-full h-full object-cover">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1546483735-92193715c769?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bandung Vibes" class="project-image">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Bandung Vibes</h3>
-                        <p class="text-gray-600 mb-4">Proyek ini menampilkan keindahan Bandung dan informasi terkait. Saya menjadi bagian tim **backend** dalam pengembangannya menggunakan **Laravel** dan **Tailwind CSS**.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Laravel</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Tailwind CSS</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Backend</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Web Development</span>
+                    <div class="project-content">
+                        <h3>Bandung Vibes</h3>
+                        <p>Proyek ini menampilkan keindahan Bandung dan informasi terkait. Saya menjadi bagian tim **backend** dalam pengembangannya menggunakan **Laravel** dan **Tailwind CSS**.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Laravel</span>
+                            <span class="project-tag">Tailwind CSS</span>
+                            <span class="project-tag">Backend</span>
+                            <span class="project-tag">Web Development</span>
                         </div>
-                        <a href="https://github.com/rhannalfa/bandung-vibes.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                        <a href="https://github.com/rhannalfa/bandung-vibes.git" target="_blank" class="project-link">Lihat di GitHub</a>
                     </div>
                 </div>
                 
-                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Core Path" class="project-img w-full h-full object-cover">
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Core Path" class="project-image">
                     </div>
-                    <div class="p-6">
+                    <div class="project-content">
                         <h3>Core Path</h3>
-                        <p class="text-gray-600 mb-4">Proyek pengembangan aplikasi pembelajaran online ini dibuat menggunakan **JavaScript** dan **Tailwind CSS**. Saya berkontribusi aktif di bagian **backend**.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Tailwind CSS</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Backend</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Web Development</span>
+                        <p>Proyek pengembangan aplikasi pembelajaran online ini dibuat menggunakan **JavaScript** dan **Tailwind CSS**. Saya berkontribusi aktif di bagian **backend**.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Tailwind CSS</span>
+                            <span class="project-tag">Backend</span>
+                            <span class="project-tag">Web Development</span>
                         </div>
-                        <a href="https://github.com/FakhriHH/core-path.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                        <a href="https://github.com/FakhriHH/core-path.git" target="_blank" class="project-link">Lihat di GitHub</a>
                     </div>
                 </div>
                 
-                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/17/4a/f9/174af9be02132d41578f3a21ba7e4ecb.jpg" alt="Music Player" class="project-img w-full h-full object-cover">
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1575308154188-f79c798c1139?auto=format&fit=crop&q=80&w=2069&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Music Player" class="project-image">
                     </div>
-                    <div class="p-6">
+                    <div class="project-content">
                         <h3>Music Player</h3>
-                        <p class="text-gray-600 mb-4">Aplikasi pemutar musik sederhana yang dibuat sepenuhnya dengan **HTML** dan **CSS**. Proyek ini menunjukkan pemahaman saya tentang frontend dasar.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Frontend</span>
+                        <p>Aplikasi pemutar musik sederhana yang dibuat sepenuhnya dengan **HTML** dan **CSS**. Proyek ini menunjukkan pemahaman saya tentang frontend dasar.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Frontend</span>
                         </div>
-                        <a href="https://github.com/rhannalfa/music-player.github.io.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                        <a href="https://github.com/rhannalfa/music-player.github.io.git" target="_blank" class="project-link">Lihat di GitHub</a>
                     </div>
                 </div>
                 
-                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sistem Informasi Beasiswa" class="project-img w-full h-full object-cover">
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sistem Informasi Beasiswa" class="project-image">
                     </div>
-                    <div class="p-6">
+                    <div class="project-content">
                         <h3>Sistem Informasi Beasiswa</h3>
-                        <p class="text-gray-600 mb-4">Pengembangan sistem untuk mengelola data beasiswa, memudahkan proses pendaftaran dan seleksi.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Database</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Fullstack</span>
+                        <p>Pengembangan sistem untuk mengelola data beasiswa, memudahkan proses pendaftaran dan seleksi.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">Database</span>
+                            <span class="project-tag">Fullstack</span>
                         </div>
-                        <a href="https://github.com/rhannalfa/beasiswa.git" target="_blank" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Lihat di GitHub</a>
+                        <a href="https://github.com/rhannalfa/beasiswa.git" target="_blank" class="project-link">Lihat di GitHub</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 px-6 md:px-12 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hubungi <span class="text-blue-600">Saya</span></h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+    <section id="contact" class="bg-gray-50">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hubungi <span>Saya</span></h2>
+                <div class="divider"></div>
+                <p class="subtitle">
                     Punya proyek dalam pikiran atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya!
                 </p>
             </div>
             
-            <form action="mailto:rhannalfa@gmail.com" method="GET" enctype="text/plain" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" name="name" placeholder="Nama Anda" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                    <input type="email" name="email" placeholder="Email Anda" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <form action="mailto:rhannalfa@gmail.com" method="GET" enctype="text/plain" class="contact-form-container">
+                <div class="contact-form-grid">
+                    <input type="text" name="name" placeholder="Nama Anda" required class="contact-input">
+                    <input type="email" name="email" placeholder="Email Anda" required class="contact-input">
                 </div>
-                <input type="text" name="subject" placeholder="Subjek" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                <textarea name="body" rows="5" placeholder="Pesan Anda" required class="contact-input w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-                <button type="submit" class="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
+                <input type="text" name="subject" placeholder="Subjek" required class="contact-input" style="margin-top: 1.5rem;">
+                <textarea name="body" rows="5" placeholder="Pesan Anda" required class="contact-input" style="margin-top: 1.5rem;"></textarea>
+                <button type="submit" class="contact-input" style="margin-top: 1.5rem;">
                     Kirim Pesan
                 </button>
             </form>
             
-            <div class="flex justify-center space-x-6 mt-12 text-gray-700">
-                <a href="mailto:rhannalfa@gmail.com" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="Email">
+            <div class="social-links">
+                <a href="mailto:rhannalfa@gmail.com" class="social-link" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://www.instagram.com/rhannalf/" target="_blank" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="Instagram">
+                <a href="https://www.instagram.com/rhannalf/" target="_blank" class="social-link" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://x.com/rhannalfa" target="_blank" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="X (Twitter)">
+                <a href="https://x.com/rhannalfa" target="_blank" class="social-link" aria-label="X (Twitter)">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://github.com/rhannalfa" target="_blank" class="text-2xl hover:text-blue-600 transition duration-300" aria-label="GitHub">
+                <a href="https://github.com/rhannalfa" target="_blank" class="social-link" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-6 bg-gray-800 text-white">
-        <div class="max-w-6xl mx-auto text-center">
+    <footer>
+        <div class="container">
             <p>&copy; 2025 Raihan Alfarizi. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="https://github.com/rhannalfa" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/rhannalf/" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com/rhannalfa" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            <div class="social-footer-links">
+                <a href="https://github.com/rhannalfa" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/rhannalf/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/rhannalfa" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
